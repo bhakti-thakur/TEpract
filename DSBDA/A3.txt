@@ -1,0 +1,20 @@
+import pandas as pd
+import numpy as np
+import seaborn as sns
+from sklearn.datasets import load_iris
+
+iris = load_iris(as_frame=True)
+df = iris.frame
+df['species'] =  iris.target_names[iris.target]
+
+grouped_summary = df.groupby('species').agg(['mean', 'median', 'min', 'max', 'std'])
+print(grouped_summary)
+
+sepal_lengths_by_species = df.groupby('species')['sepal length (cm)'].apply(list)
+print(sepal_lengths_by_species )
+
+for species in df['species'].unique():
+    print(f"\n stats for {species}:")
+    subset = df[df['species'] == species]
+    print(subset.describe(percentiles = [.25, .5, .75]))
+    

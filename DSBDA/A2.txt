@@ -1,0 +1,37 @@
+import pandas as pd
+import numpy as np
+
+
+data = {
+    'student_id':[1,2,3,4,5,6,7],
+    'Math_Score':[88, 92, 95, np.nan, 67, 105, 90],
+    'English_Score': [78, 85, np.nan, 74, 70, 90, 88],
+    'Attendance_Rate': [0.92, 0.85, 0.88, 0.76, np.nan, 0.95, 0.89]
+}
+
+
+df= pd.DataFrame(data)
+df.head(7)
+df.isnull().sum()
+
+df.fillna({'Math_Score': df['Math_Score'].mean()}, inplace=True)
+df.fillna({'English_Score': df['English_Score'].mean()}, inplace=True)
+df.fillna({'Attendance_Rate': df['Attendance_Rate'].mean()}, inplace=True)
+df.head(7)
+
+from scipy.stats import zscore
+zscore = np.abs(zscore(df[['Math_Score', 'English_Score']]))
+outliers = (zscore>3)
+print('outliers:', df[outliers.any(axis=1)])
+
+Q1 = df['Math_Score'].quantile(0.25)
+Q3 = df['Math_Score'].quantile(0.75)
+IQR= Q3-Q1
+l_b = Q1-1.5*IQR
+u_b = Q3+1.5*IQR
+
+df['Math_Score'] = np.where(df['Math_Score']> u_b, u_b, np.where(df['Math_Score']<l_b, l_b, df['Math_Score']))
+print(df['Math_Score'].skew())
+df['Math_Score_Log'] = np.log(df['Math_Score']+1)
+print("Skewness After Transformation:", df['Math_Score_Log'].skew())
+print(df)

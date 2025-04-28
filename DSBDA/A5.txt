@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import confusion_matrix, classification_report, accuracy_score, precision_score, recall_score
+
+df = pd.read_csv('Social_Network_Ads.csv')
+df.head()
+
+df = df.drop("User ID", axis=1)
+df['Gender'] = df['Gender'].map({'Male':0, 'Female':1})
+x=df[['Gender', 'Age', 'EstimatedSalary']]
+y=df['Purchased']
+x=df[['Gender', 'Age', 'EstimatedSalary']]
+y=df['Purchased']
+x_scaled = sc.fit_transform(x)
+x_train, x_test, y_train, y_test = train_test_split(x_scaled, y, test_size=0.25, random_state=0)
+model = LogisticRegression()
+model.fit(x_train, y_train)
+y_pred = model.predict(x_test)
+cm = confusion_matrix(y_test, y_pred)
+TP = cm[1,1]
+FP = cm[0,1]
+TN = cm[0,0]
+FN = cm[1,0]
+print("Confusion Matrix: \n", cm)
+accuracy = accuracy_score(y_test, y_pred)
+error_rate = 1-accuracy
+precision = precision_score(y_test, y_pred)
+recall = recall_score(y_test, y_pred)
+
+print(f"✅ True Positives (TP): {TP}")
+print(f"✅ False Positives (FP): {FP}")
+print(f"✅ True Negatives (TN): {TN}")
+print(f"✅ False Negatives (FN): {FN}")
+print(f"\n📈 Accuracy: {accuracy:.2f}")
+print(f"📉 Error Rate: {error_rate:.2f}")
+print(f"🎯 Precision: {precision:.2f}")
+print(f"🔁 Recall: {recall:.2f}")
+
+sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
+plt.xlabel("Predicted")
+plt.ylabel("Actual")
+plt.title("Confusion Matrix")
+plt.show()
