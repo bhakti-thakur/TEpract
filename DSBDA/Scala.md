@@ -7,13 +7,13 @@ java -version
 
 Step 2: Download Apache Spark
 
-    Go to the Apache Spark download page: Apache Spark Downloads.
+Go to the Apache Spark download page: Apache Spark Downloads.
 
-    Choose a version and download the pre-built Hadoop package. For simplicity, let’s say you’re downloading the Spark 3.x version with Hadoop 3.x.
+Choose a version and download the pre-built Hadoop package. For simplicity, let’s say you’re downloading the Spark 3.x version with Hadoop 3.x.
 
-    You can use wget or download the .tar.gz file manually from the website.
+You can use wget or download the .tar.gz file manually from the website.
 
-    Example using wget:
+Example using wget:
 
     `wget https://dlcdn.apache.org/spark/spark-3.4.0/spark-3.4.0-bin-hadoop3.tgz`
 
