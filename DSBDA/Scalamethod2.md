@@ -19,9 +19,9 @@ source ~/.bashrc
 spark-shell
 ```
 scala> `:load /home/mescoe/Documents/demo.scala`
-Loading /home/mescoe/Documents/demo.scala...
-import scala.io.StdIn
-defined object AddTwoNumbers
+    Loading /home/mescoe/Documents/demo.scala...
+    import scala.io.StdIn
+    defined object AddTwoNumbers
 scala> `AddTwoNumbers.main(Array.empty[String])`
 o/p:
 ```
