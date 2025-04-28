@@ -13,9 +13,11 @@ println(s"The sum of $num1 and $num2 is $sum")
 ```
 Save above program as demo.scala at any location (e.g.home or Desktop or Documents)
 Now open the terminal and write following commands
-mescoe@mescoe-Lenovo-S510:~$ `start-master.sh`
-mescoe@mescoe-Lenovo-S510:~$ `source ~/.bashrc`
-mescoe@mescoe-Lenovo-S510:~$ `spark-shell`
+```
+start-master.sh
+source ~/.bashrc
+spark-shell
+```
 scala> `:load /home/mescoe/Documents/demo.scala`
 Loading /home/mescoe/Documents/demo.scala...
 import scala.io.StdIn
