@@ -64,10 +64,10 @@ scala -version
 Create a file:
  `nano filename.scala`
 
-`object filename{
+```object filename{
    def main(args: Array[String]): Unit ={
         println(" Helloo")}}
-`
+```
 
 Compile 
 
